@@ -39,3 +39,7 @@ function operate(a, op, b) {
     }
     return result;
 }
+
+
+const numbers = [...document.querySelector("#numbers").children];
+console.log(numbers);
