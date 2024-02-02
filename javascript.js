@@ -43,4 +43,4 @@ function operate(a, op, b) {
 
 const numbers = [...document.querySelector("#numbers").children];
 console.log(numbers);
-console.log("Hello, World")
+console.log("Hello, Worl.");
