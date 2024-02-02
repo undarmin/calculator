@@ -41,6 +41,16 @@ function operate(a, op, b) {
 }
 
 
+const display = document.querySelector(".display")
 const numbers = [...document.querySelector("#numbers").children];
-console.log(numbers);
-console.log("Hello, Worl.");
+const clear = document.querySelector(".clear");
+
+clear.addEventListener("click", () => display.textContent = "");
+
+numbers.forEach((number) => {
+    number.addEventListener("click", () => {
+        display.textContent += 
+        number.getAttribute("class");
+    }
+        )
+});
