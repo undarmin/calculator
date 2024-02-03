@@ -45,9 +45,12 @@ let currentOperation = "";
 
 const display = document.querySelector(".display")
 const numbers = [...document.querySelector("#numbers").children];
+numbers.pop();
 const clear = document.querySelector(".clear");
 const operations = [...document.querySelector("#operations").children]
 const equal = document.querySelector("#equal");
+
+let decl = false;
 
 equal.addEventListener("click",
 () => {
@@ -57,6 +60,7 @@ equal.addEventListener("click",
     oldDisplayValue = "";
     displayValue = "";
     currentOperation = "";
+    decl = false;
 })
 
 clear.addEventListener("click", () => displayValue =
@@ -66,6 +70,13 @@ oldDisplayValue = newDisplayValue = currentOperation = display.textContent = "")
 
 numbers.forEach((number) => {
     number.addEventListener("click", () => {
+        if (numbers.indexOf(number) === 9) {
+            if (decl === true) {
+                return;
+            } else {
+                decl = true;
+            }
+        }
         if (oldDisplayValue) {
             if (display.textContent === oldDisplayValue) {
                 display.textContent = "";
@@ -95,10 +106,7 @@ operations.forEach(
                 currentOperation = operation.textContent;
                 newDisplayValue = "";
             }
-
-            console.table(
-            [{oldDisplayValue, displayValue, newDisplayValue, currentOperation,
-            newDisplayValue}])
+            decl = false;
         })
     }
 )
