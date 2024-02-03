@@ -45,10 +45,17 @@ let currentOperation = "";
 
 const display = document.querySelector(".display")
 const numbers = [...document.querySelector("#numbers").children];
+const operDisplay = document.querySelector("#oper")
+numbers.pop();
 numbers.pop();
 const clear = document.querySelector(".clear");
-const operations = [...document.querySelector("#operations").children]
+const operations = [...document.querySelector("#operations").children];
+operations.pop();
 const equal = document.querySelector("#equal");
+const backspace = document.querySelector(".backspace");
+
+backspace.addEventListener("click", 
+() => {if (!currentOperation || !decl) {display.textContent = (display.textContent).slice(0, -1)}})
 
 let decl = false;
 
@@ -63,7 +70,7 @@ equal.addEventListener("click",
     decl = false;
 })
 
-clear.addEventListener("click", () => displayValue =
+clear.addEventListener("click", () => oper.textContent = displayValue =
 oldDisplayValue = newDisplayValue = currentOperation = display.textContent = "");
 
 
@@ -96,14 +103,14 @@ operations.forEach(
         operation.addEventListener('click', () => {
             if (!oldDisplayValue) {
             oldDisplayValue = display.textContent;
-            currentOperation = operation.textContent;
+            currentOperation = oper.textContent = operation.textContent;
             } else {
                 newDisplayValue = display.textContent;
                 display.textContent = displayValue = operate(
                     oldDisplayValue, currentOperation, newDisplayValue
                 );
                 oldDisplayValue = display.textContent;
-                currentOperation = operation.textContent;
+                currentOperation = oper.textContent = operation.textContent;
                 newDisplayValue = "";
             }
             decl = false;
